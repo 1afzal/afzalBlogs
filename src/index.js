@@ -1,23 +1,18 @@
 import express from "express";
-const app = express;
+const app = express();
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
+app.use(express.json())
 const PORT=process.env.PORT ?? 6969;
-app.use(express.json());
-import blogsRouter from "../routes/blogsRoutes";
-import userRouter from "../routes/userRouter";
-import { blogModel } from "../models/DBmodel";
-import { userModel } from "../models/DBmodel";
+import blogsRouter from "../routes/blogsRoutes.js";
+import userRouter from "../routes/userRouter.js";
+import { blogModel } from "../models/DBmodel.js";
+import { userModel } from "../models/DBmodel.js";
+import connectDB from "./connectDB.js";
 
-async function main(){
-    try{
-        await mongoose.connect(process.env.MONGO_URI);
-    }
-    catch(err){
-        console.log(`error is ${err.message} `)
-    }
-}
 
+connectDB();
 
 app.use('/blogs',blogsRouter);
 app.use(`/user`,userRouter);
