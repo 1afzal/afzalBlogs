@@ -38,7 +38,7 @@ blogsRouter.post(`/blog/post`, (req, res) => {
         const newBlog = blogModel.create({
             title: req.body.title,
             author: req.body.author,
-            content: req.body.author,
+            content: req.body.content,
             status: req.body.status ?? "draft",
         })
         res.status(200).send("blog created successfully");
