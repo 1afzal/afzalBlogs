@@ -10,11 +10,7 @@ const userSchema = new Schema({
 const blogSchema = new Schema({
     title: { type: String, required: true },
     // Link to the User model using ObjectId
-    author: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'user',
-        required: true 
-    },
+    author: { type: String, required:true},
     content: { type: String, required: true },
     status: { 
         type: String, 
